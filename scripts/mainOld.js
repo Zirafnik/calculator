@@ -31,10 +31,6 @@ function operate(operator, first, second) {
     }
 }
 
-console.log(operate('+', 6, 4));
-console.log(operate('-', 3, 4));
-console.log(operate('*', 9, 4));
-console.log(operate('/', 1, 4));
 
 const display= document.querySelector('#display');
 let displayArr=[];
@@ -59,14 +55,30 @@ operators.forEach(operator => operator.addEventListener('click', recordOperator)
 let currentOperator='';
 let numbersArr=[];
 function recordOperator(e) {
+    //first number
     if(numbersArr.length==0) {
         numbersArr.push(Number(displayArr.join('')));
         displayArr=[];
         currentOperator= e.target.value;
-    } else if(numbersArr.length>0) {
-        displayArr=[];
+    //if used =
+    } else if(numbersArr.length>0 && currentOperator=='') {
         currentOperator= e.target.value;
+    //if used another operator
+    } else if(numbersArr.length>0 && currentOperator!='') {
+        if(displayArr==[]) {
+            currentOperator= e.target.value;
+        } else {
+        numbersArr.push(Number(displayArr.join('')));
+
+        let result= operate(currentOperator, numbersArr[numbersArr.length - 2], numbersArr[numbersArr.length-1]);
+        numbersArr.push(result);
+        display.textContent= result;
+
+        currentOperator= e.target.value;
+        displayArr=[];
+        }
     }
+    console.log(displayArr);
 }
 
 
@@ -80,6 +92,7 @@ function getResult() {
     numbersArr.push(result);
     display.textContent= result;
 
+    currentOperator='';
     console.log(numbersArr);
 }
 

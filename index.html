@@ -9,37 +9,39 @@
     <body>
         <div id="container-outer">
             <div id="container-inner">
-                <div id="display">88888888888888</div>
+                <div id="display"></div>
 
-                <button class="buttons">AC</button>
-                <button class="buttons">!</button>
-                <button class="buttons">root</button>
+                <button id="clear" class="buttons">AC</button>
+                <button class="buttons operator" value="!">!</button>
+                <button class="buttons operator" value="root">root</button>
                 <button class="buttons">bckspc</button>
 
-                <button class="buttons">^</button>
-                <button class="buttons">+/-</button>
-                <button class="buttons">%</button>
-                <button class="buttons">/</button>
+                <button class="buttons operator" value="^">^</button>
+                <button class="buttons operator" value="neg">+/-</button>
+                <button class="buttons operator" value="%">%</button>
+                <button class="buttons operator" value="/">/</button>
 
-                <button class="buttons">7</button>
-                <button class="buttons">8</button>
-                <button class="buttons">9</button>
-                <button class="buttons">*</button>
+                <button class="buttons number" value="7">7</button>
+                <button class="buttons number" value="8">8</button>
+                <button class="buttons number" value="9">9</button>
+                <button class="buttons operator" value="*">*</button>
                 
-                <button class="buttons">4</button>
-                <button class="buttons">5</button>
-                <button class="buttons">6</button>
-                <button class="buttons">-</button>
+                <button class="buttons number" value="4">4</button>
+                <button class="buttons number" value="5">5</button>
+                <button class="buttons number" value="6">6</button>
+                <button class="buttons operator" value="-">-</button>
 
-                <button class="buttons">1</button>
-                <button class="buttons">2</button>
-                <button class="buttons">3</button>
-                <button class="buttons">+</button>
+                <button class="buttons number" value="1">1</button>
+                <button class="buttons number" value="2">2</button>
+                <button class="buttons number" value="3">3</button>
+                <button class="buttons operator" value="+">+</button>
 
-                <button id="zero" class="buttons">0</button>
+                <button id="zero" class="buttons number" value="0">0</button>
                 <button class="buttons">.</button>
-                <button class="buttons">=</button>
+                <button id="equals" class="buttons">=</button>
             </div>
         </div>
+
+        <script src="scripts/main.js"></script>
     </body>
 </html>

@@ -7,11 +7,14 @@ function subtract(num1, num2) {
 }
 
 function multiply(num1, num2) {
-    let x=10000000000000000;
+    let x=10;
     return (num1*x) * (num2*x) / (x*x);  //kind of dealing with floating point...
 }
 
 function divide(num1, num2) {
+    if(num2==0) {
+        return 'That is illegal!!!';
+    }
     return num1 / num2;
 }
 
@@ -108,7 +111,14 @@ function recordOperator(e) {
                 displayArr=[];
                 workingNumbers.first=null;
                 return;
-            } else {
+            } 
+            else if(result=='That is illegal!!!') {
+                display.textContent= result;
+                displayArr=[];
+                workingNumbers.first=null;
+                return;
+            }
+            else {
             workingNumbers.first= result; //saves result to first
             workingNumbers.second= null; //clears second
             display.textContent= result; //displays result

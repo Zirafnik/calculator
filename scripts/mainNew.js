@@ -128,7 +128,10 @@ function recordOperator(e) {
             console.log('set opertator, first already exists');
             if(e.target.value=='=') {
                 workingNumbers.operator= null;
-                console.log('nothing happens');
+                workingNumbers.first= Number(displayArr.join(''));
+                displayArr= [];
+                display.textContent= workingNumbers.first;
+                console.log('reset first');
             }
         }
     }
@@ -231,7 +234,7 @@ function getFactorial() {
         let factorized= factorial(workingNumbers.first);
         
         if(factorized==Infinity || factorized.toString().length>20){
-            display.textContent= 'Error';
+            display.textContent= 'Error-Too big';
             displayArr=[];
             workingNumbers.first=null;
             return;
@@ -247,7 +250,7 @@ function getFactorial() {
         let factorized= factorial(workingNumbers.first);
 
         if(factorized==Infinity || factorized.toString().length>20){
-            display.textContent= 'Error';
+            display.textContent= 'Error-Too big';
             displayArr=[];
             workingNumbers.first=null;
             return;

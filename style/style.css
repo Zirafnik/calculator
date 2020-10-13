@@ -41,6 +41,10 @@ html, body {
 
 #display {
     grid-area: display;
+    justify-self: end;
+    align-self: center;
+
+    font-size: 32px;
 }
 
 #zero {

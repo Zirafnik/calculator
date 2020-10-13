@@ -14,6 +14,15 @@ function divide(num1, num2) {
     return num1 / num2;
 }
 
+function toPower(num1, num2) {
+    return Math.pow(num1, num2);
+}
+
+function remainder(num1, num2) {
+    return num1 % num2;
+}
+
+
 function operate(operator, first, second) {
 
     switch(operator) {
@@ -28,6 +37,12 @@ function operate(operator, first, second) {
 
         case '/':
             return divide(first, second);
+
+        case '^':
+            return toPower(first, second);
+
+        case '%':
+            return remainder(first, second);
     }
 }
 
@@ -45,12 +60,17 @@ const numbers= document.querySelectorAll('.number');
 numbers.forEach(number => number.addEventListener('click', addNumber));
 //displays clicked numbers
 function addNumber(e) {
-    if(displayArr[0]==0) {
-        displayArr[0]=e.target.value;
-        display.textContent= displayArr.join('');
+    if(displayArr.length==20) {
+        return;
     } else {
-        displayArr.push(e.target.value);
-        display.textContent= displayArr.join('');
+        if(displayArr[0]==0 && displayArr.some(x => x=='.')==false) {
+            displayArr[0]=e.target.value;
+            display.textContent= displayArr.join('');
+        } else {
+            displayArr.push(e.target.value);
+            display.textContent= displayArr.join('');
+            console.log(displayArr);
+        }
     }
 }
 
@@ -58,10 +78,8 @@ function addNumber(e) {
 const operators= document.querySelectorAll('.operator');
 operators.forEach(operator => operator.addEventListener('click', recordOperator));
 
-/*let currentOperator='';
-let numbersArr=[];*/
 function recordOperator(e) {
-    //no numbers
+    //if first empty
     if(workingNumbers.first==null) {
         workingNumbers.first= Number(displayArr.join('')); //saves first number
         workingNumbers.operator= e.target.value; //saves operator value
@@ -91,6 +109,7 @@ function recordOperator(e) {
         }
     }
 
+    //first + no operator
     else if(workingNumbers.first!=null && workingNumbers.operator==null) {
         workingNumbers.operator= e.target.value;
         console.log('set opertator, first already exists');
@@ -122,4 +141,34 @@ backspace.addEventListener('click', deleteLastNum);
 function deleteLastNum() {
     displayArr.pop();
     display.textContent= displayArr.join('');
+}
+
+
+const dot= document.querySelector('#dot');
+dot.addEventListener('click', addDecimal);
+
+function addDecimal() {
+    if(displayArr.length>=19) {
+        return;
+    } else if(displayArr.some(x => x=='.')) {
+            return;
+    }
+    displayArr.push('.');
+    display.textContent= displayArr.join('');
+
+}
+
+
+const neg= document.querySelector('#neg');
+neg.addEventListener('click', turnNegative);
+
+
+function turnNegative() {
+    if(displayArr.length!=0 && displayArr.every(x => x!='.')==true && displayArr[0]!='-') {
+        displayArr.unshift('-');
+        display.textContent= displayArr.join('');
+    } else if(workingNumbers.first!=null){
+        workingNumbers.first= workingNumbers.first * (-1);
+        display.textContent= workingNumbers.first;
+    }
 }

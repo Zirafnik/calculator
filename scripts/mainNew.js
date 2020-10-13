@@ -170,10 +170,15 @@ neg.addEventListener('click', turnNegative);
 
 
 function turnNegative() {
-    if(displayArr.length!=0 && displayArr.every(x => x!='.')==true && displayArr[0]!='-') {
-        displayArr.unshift('-');
-        display.textContent= displayArr.join('');
-    } else if(workingNumbers.first!=null){
+    if(displayArr.length!=0 && displayArr.every(x => x!='.')==true) {
+        if(displayArr[0]!='-') {
+            displayArr.unshift('-');
+            display.textContent= displayArr.join('');
+        } else if(displayArr[0]=='-') {
+            displayArr.shift();
+            display.textContent= displayArr.join('');
+        }
+    } else if(displayArr.length==0 && workingNumbers.first!=null){
         workingNumbers.first= workingNumbers.first * (-1);
         display.textContent= workingNumbers.first;
     }

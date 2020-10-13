@@ -7,7 +7,8 @@ function subtract(num1, num2) {
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    let x=10000000000000000;
+    return (num1*x) * (num2*x) / (x*x);  //kind of dealing with floating point...
 }
 
 function divide(num1, num2) {
@@ -21,7 +22,6 @@ function toPower(num1, num2) {
 function remainder(num1, num2) {
     return num1 % num2;
 }
-
 
 function operate(operator, first, second) {
 
@@ -84,45 +84,53 @@ function recordOperator(e) {
         console.log('operator changed');
         console.log(workingNumbers.operator);
     } else {
-    //if first empty
-    if(workingNumbers.first==null) {
-        workingNumbers.first= Number(displayArr.join('')); //saves first number
-        workingNumbers.operator= e.target.value; //saves operator value
-        displayArr=[]; //clears display arr
-        console.log('set first and set operator');
-        console.log(e.target.value);
-        if(e.target.value=='=') {
-            workingNumbers.operator= null;
-            display.textContent= workingNumbers.first;
-            console.log('set first and deleted operator');
+        //if first empty
+        if(workingNumbers.first==null) {
+            workingNumbers.first= Number(displayArr.join('')); //saves first number
+            workingNumbers.operator= e.target.value; //saves operator value
+            displayArr=[]; //clears display arr
+            console.log('set first and set operator');
+            console.log(e.target.value);
+            if(e.target.value=='=') {
+                workingNumbers.operator= null;
+                display.textContent= workingNumbers.first;
+                console.log('set first and deleted operator');
+            }
+        } 
+        //first number + operator
+        else if(workingNumbers.first!=null && workingNumbers.operator!=null && displayArr!=[]) {
+            workingNumbers.second= Number(displayArr.join('')); //saves second number
+            //also gives result
+            let result= operate(workingNumbers.operator, workingNumbers.first, workingNumbers.second);
+            
+            if(result.toString().length>20) {
+                display.textContent= 'Error-Too big';
+                displayArr=[];
+                workingNumbers.first=null;
+                return;
+            } else {
+            workingNumbers.first= result; //saves result to first
+            workingNumbers.second= null; //clears second
+            display.textContent= result; //displays result
+            displayArr=[]; //clears display arr
+            workingNumbers.operator= e.target.value; //sets new operator value
+            console.log('set result and set new operator');
+            }
+            if(e.target.value=='=') {
+                workingNumbers.operator= null;
+                console.log('set result and no operator');
+            }
         }
-    } 
-    //first number + operator
-    else if(workingNumbers.first!=null && workingNumbers.operator!=null && displayArr!=[]) {
-        workingNumbers.second= Number(displayArr.join('')); //saves second number
-        //also gives result
-        let result= operate(workingNumbers.operator, workingNumbers.first, workingNumbers.second);
-        workingNumbers.first= result; //saves result to first
-        workingNumbers.second= null; //clears second
-        display.textContent= result; //displays result
-        displayArr=[]; //clears display arr
-        workingNumbers.operator= e.target.value; //sets new operator value
-        console.log('set result and set new operator');
-        if(e.target.value=='=') {
-            workingNumbers.operator= null;
-            console.log('set result and no operator');
-        }
-    }
 
-    //first + no operator
-    else if(workingNumbers.first!=null && workingNumbers.operator==null) {
-        workingNumbers.operator= e.target.value;
-        console.log('set opertator, first already exists');
-        if(e.target.value=='=') {
-            workingNumbers.operator= null;
-            console.log('nothing happens');
+        //first + no operator
+        else if(workingNumbers.first!=null && workingNumbers.operator==null) {
+            workingNumbers.operator= e.target.value;
+            console.log('set opertator, first already exists');
+            if(e.target.value=='=') {
+                workingNumbers.operator= null;
+                console.log('nothing happens');
+            }
         }
-    }
     }
 }
 
@@ -210,7 +218,7 @@ const factorialButton= document.querySelector('#factorial');
 factorialButton.addEventListener('click', getFactorial);
 
 function getFactorial() {
-    if(displayArr.length==0 && workingNumbers.first==null) {
+    if(displayArr.length==0 && workingNumbers.first==null || displayArr[0]=='-' || workingNumbers.first<0) {
         return;
     }
     else if(displayArr.length!=0) {
@@ -219,19 +227,31 @@ function getFactorial() {
         if(workingNumbers.first % 1!=0) {
             return;
         }
+
         let factorized= factorial(workingNumbers.first);
-        if(factorized==Infinity) {
-            
-            console.log('lol');
+        
+        if(factorized==Infinity || factorized.toString().length>20){
+            display.textContent= 'Error';
+            displayArr=[];
+            workingNumbers.first=null;
             return;
         }
+
         workingNumbers.first= factorized;
+        console.log(workingNumbers.first);
         displayArr=[];
         display.textContent= factorized;
         
     }
     else {
         let factorized= factorial(workingNumbers.first);
+
+        if(factorized==Infinity || factorized.toString().length>20){
+            display.textContent= 'Error';
+            displayArr=[];
+            workingNumbers.first=null;
+            return;
+        }
         workingNumbers.first= factorized;
         display.textContent= factorized;
     } 

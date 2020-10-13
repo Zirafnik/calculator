@@ -79,6 +79,11 @@ const operators= document.querySelectorAll('.operator');
 operators.forEach(operator => operator.addEventListener('click', recordOperator));
 
 function recordOperator(e) {
+    if(displayArr.length==0) {
+        workingNumbers.operator= e.target.value; //changes operator
+        console.log('operator changed');
+        console.log(workingNumbers.operator);
+    } else {
     //if first empty
     if(workingNumbers.first==null) {
         workingNumbers.first= Number(displayArr.join('')); //saves first number
@@ -117,6 +122,7 @@ function recordOperator(e) {
             workingNumbers.operator= null;
             console.log('nothing happens');
         }
+    }
     }
 }
 

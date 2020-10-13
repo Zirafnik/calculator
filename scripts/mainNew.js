@@ -183,3 +183,60 @@ function turnNegative() {
         display.textContent= workingNumbers.first;
     }
 }
+
+
+const root= document.querySelector('#root');
+root.addEventListener('click', getSquareRoot);
+
+function getSquareRoot() {
+    if(displayArr.length==0 && workingNumbers.first==null) {
+        return;
+    }
+    else if(displayArr.length!=0) {
+        workingNumbers.first= Number(displayArr.join(''));
+        let rooted= Math.sqrt(workingNumbers.first); //result
+        workingNumbers.first= rooted;
+        displayArr=[];
+        display.textContent= rooted;
+    } else {
+        let rooted= Math.sqrt(workingNumbers.first); //result
+        workingNumbers.first= rooted;
+        display.textContent= rooted;
+    }
+}
+
+
+const factorialButton= document.querySelector('#factorial');
+factorialButton.addEventListener('click', getFactorial);
+
+function getFactorial() {
+    if(displayArr.length==0 && workingNumbers.first==null) {
+        return;
+    }
+    else if(displayArr.length!=0) {
+        workingNumbers.first= Number(displayArr.join(''));
+        //check if not integer
+        if(workingNumbers.first % 1!=0) {
+            return;
+        }
+        let factorized= factorial(workingNumbers.first);
+        if(factorized==Infinity) {
+            
+            console.log('lol');
+            return;
+        }
+        workingNumbers.first= factorized;
+        displayArr=[];
+        display.textContent= factorized;
+        
+    }
+    else {
+        let factorized= factorial(workingNumbers.first);
+        workingNumbers.first= factorized;
+        display.textContent= factorized;
+    } 
+}
+
+function factorial(n) {
+        return (n != 1) ? n * factorial(n - 1) : 1;
+}

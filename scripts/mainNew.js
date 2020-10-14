@@ -7,7 +7,7 @@ function subtract(num1, num2) {
 }
 
 function multiply(num1, num2) {
-    let x=10;
+    let x=1000000000000;
     return (num1*x) * (num2*x) / (x*x);  //kind of dealing with floating point...
 }
 
@@ -107,13 +107,19 @@ function recordOperator(e) {
             let result= operate(workingNumbers.operator, workingNumbers.first, workingNumbers.second);
             
             if(result.toString().length>20) {
-                display.textContent= 'Error-Too big';
+                display.textContent= 'Error';
                 displayArr=[];
                 workingNumbers.first=null;
                 return;
             } 
             else if(result=='That is illegal!!!') {
                 display.textContent= result;
+                displayArr=[];
+                workingNumbers.first=null;
+                return;
+            }
+            else if(isNaN(result)) {
+                display.textContent= 'Not a number';
                 displayArr=[];
                 workingNumbers.first=null;
                 return;
@@ -217,6 +223,12 @@ function getSquareRoot() {
         workingNumbers.first= Number(displayArr.join(''));
         let rooted= Math.sqrt(workingNumbers.first); //result
         workingNumbers.first= rooted;
+        if(isNaN(workingNumbers.first)){
+            display.textContent= 'Not a number';
+            displayArr=[];
+            workingNumbers.first= null;
+            return;
+        }
         displayArr=[];
         display.textContent= rooted;
     } else {

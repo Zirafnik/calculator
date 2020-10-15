@@ -10,11 +10,21 @@ html, body {
     align-items: center;
 }
 
-#container-outer {
-    height: 550px;
-    width: 450px;
+@font-face {
+    font-family: 'digital';
+    src: url('/style/digital-7.ttf');
+}
 
-    background: grey;
+#container-outer {
+    height: 565px;
+    width: 465px;
+
+    border-radius: 25px;
+
+    background: rgb(179, 179, 179);
+    border-style: solid;
+    border-color: black;
+    border-width: 6px;
 
     display: flex;
     flex-direction: column;
@@ -26,11 +36,15 @@ html, body {
     height: 520px;
     Width: 420px;
 
+    padding: 5px;
+
     background: rgb(179, 179, 179);
     
     display: grid;
-    grid-template-columns: repeat(4, 25%);
-    grid-template-rows: repeat(7, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1.5fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
     grid-template-areas:
     "display display display display"
     "ac factorial root backspace"
@@ -43,12 +57,96 @@ html, body {
 
 #display {
     grid-area: display;
-    justify-self: end;
-    align-self: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
 
-    font-size: 32px;
+    height: 90%;
+    width: 100%;
+    padding-bottom: 5px;
+    
+    background-color: gray;
+    font-size: 80px;
+    font-family: digital;
+    border-radius: 6px;
+    border: solid black 1px;
+    
 }
 
 #zero {
     grid-area: zero;
+}
+
+.buttons {
+    border-radius: 10px;
+    font-size: 28px;
+    font-weight: 800;
+    color: black;
+
+    line-height: 14px;
+    border: solid black 2px;
+
+    cursor: pointer;
+}
+
+.buttons:hover {
+    box-shadow: 0 5px 15px rgba(145, 92, 182, .4);
+    border-color: white;
+}
+
+#rem {
+    padding-top: 20px;
+}
+
+#remainder {
+    font-size: 12px;
+}
+
+#delete {
+    background-image: url('/images/backspace.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 40%;
+}
+
+#root {
+    background-image: url('/images/square-root-mathematical-symbol.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 35%;
+}
+
+.nokey {
+    background-color: #39CCCC;
+}
+
+.nokey:hover {
+    background-color: #00ffff;
+}
+
+.numpad {
+    background-color: orange;
+}
+
+.numpad:hover {
+    background-color: rgb(255, 190, 71);
+}
+
+#footer {
+    display: flex;
+    flex-direction: row;
+    
+    margin-top: 15px;
+}
+
+#footer-text {
+    font-size: 26px;
+    margin-right: 12px;
+
+    align-self: center;
+}
+
+#github-image {
+    height: 45px;
+    width: 45px;
 }

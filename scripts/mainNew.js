@@ -63,7 +63,7 @@ const numbers= document.querySelectorAll('.number');
 numbers.forEach(number => number.addEventListener('click', addNumber));
 //displays clicked numbers
 function addNumber(e) {
-    if(displayArr.length==20) {
+    if(displayArr.length==11) {
         return;
     } else {
         if(displayArr[0]==0 && displayArr.some(x => x=='.')==false) {
@@ -106,7 +106,7 @@ function recordOperator(e) {
             //also gives result
             let result= operate(workingNumbers.operator, workingNumbers.first, workingNumbers.second);
             
-            if(result.toString().length>20) {
+            if(result.toString().length>11) {
                 display.textContent= 'Error';
                 displayArr=[];
                 workingNumbers.first=null;
@@ -255,7 +255,7 @@ function getFactorial() {
 
         let factorized= factorial(workingNumbers.first);
         
-        if(factorized==Infinity || factorized.toString().length>20){
+        if(factorized==Infinity || factorized.toString().length>11){
             display.textContent= 'Error-Too big';
             displayArr=[];
             workingNumbers.first=null;
@@ -271,7 +271,7 @@ function getFactorial() {
     else {
         let factorized= factorial(workingNumbers.first);
 
-        if(factorized==Infinity || factorized.toString().length>20){
+        if(factorized==Infinity || factorized.toString().length>11){
             display.textContent= 'Error-Too big';
             displayArr=[];
             workingNumbers.first=null;

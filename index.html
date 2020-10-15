@@ -9,39 +9,45 @@
     <body>
         <div id="container-outer">
             <div id="container-inner">
+                
                 <div id="display"></div>
 
-                <button id="clear" class="buttons">AC</button>
-                <button id="factorial" class="buttons" value="!">!</button>
-                <button id="root" class="buttons" value="root">root</button>
-                <button id="delete" class="buttons">bckspc</button>
+                <button id="clear" class="buttons nokey">AC</button>
+                <button id="factorial" class="buttons nokey" value="!">!</button>
+                <button id="root" class="buttons nokey" value="root"></button>
+                <button id="delete" class="buttons numpad"></button>
 
-                <button class="buttons operator" value="^">^</button>
-                <button id="neg" class="buttons" value="neg">+/-</button>
-                <button class="buttons operator" value="%">%</button>
-                <button class="buttons operator" value="/">/</button>
+                <button class="buttons operator nokey" value="^">^</button>
+                <button id="neg" class="buttons nokey" value="neg">+/-</button>
+                <button id="rem" class="buttons operator nokey" value="%">%</br><span id="remainder">remainder</span></button>
+                <button class="buttons operator numpad" value="/">/</button>
 
                 <button class="buttons number" value="7">7</button>
                 <button class="buttons number" value="8">8</button>
                 <button class="buttons number" value="9">9</button>
-                <button class="buttons operator" value="*">*</button>
+                <button class="buttons operator numpad" value="*">*</button>
                 
                 <button class="buttons number" value="4">4</button>
                 <button class="buttons number" value="5">5</button>
                 <button class="buttons number" value="6">6</button>
-                <button class="buttons operator" value="-">-</button>
+                <button class="buttons operator numpad" value="-">-</button>
 
                 <button class="buttons number" value="1">1</button>
                 <button class="buttons number" value="2">2</button>
                 <button class="buttons number" value="3">3</button>
-                <button class="buttons operator" value="+">+</button>
+                <button class="buttons operator numpad" value="+">+</button>
 
                 <button id="zero" class="buttons number" value="0">0</button>
                 <button id="dot" class="buttons">.</button>
-                <button id="equals" class="buttons operator" value="=">=</button>
+                <button id="equals" class="buttons operator numpad" value="=">=</button>
             </div>
         </div>
 
-        <script src="scripts/mainNew.js"></script>
+        <footer id="footer">
+            <div id="footer-text">Zirafnik</div>
+            <a target="_blank" href="https://github.com/Zirafnik/calculator"><img id="github-image" src="images/github.png"></a>
+        </footer>
+
+        <script targer="_blank" src="scripts/mainNew.js"></script>
     </body>
 </html>

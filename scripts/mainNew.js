@@ -198,14 +198,20 @@ neg.addEventListener('click', turnNegative);
 
 function turnNegative() {
     if(displayArr.length!=0 && displayArr.every(x => x!='.')==true) {
-        if(displayArr[0]!='-') {
+        if(displayArr[0]!='-' && displayArr.length>=11) {
+            return;
+        }
+        else if(displayArr[0]!='-') {
             displayArr.unshift('-');
             display.textContent= displayArr.join('');
         } else if(displayArr[0]=='-') {
             displayArr.shift();
             display.textContent= displayArr.join('');
         }
-    } else if(displayArr.length==0 && workingNumbers.first!=null){
+    } else if(displayArr.length==0 && workingNumbers.first!=null) {
+        if(workingNumbers.first.toString().split('')[0]!='-' && workingNumbers.first.toString().length>10) {
+            return;
+        }
         workingNumbers.first= workingNumbers.first * (-1);
         display.textContent= workingNumbers.first;
     }

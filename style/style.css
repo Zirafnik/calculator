@@ -59,7 +59,7 @@ html, body {
     grid-area: display;
     display: flex;
     justify-content: flex-end;
-    align-items: flex-start;
+    align-items: center;
 
     height: 90%;
     width: 100%;

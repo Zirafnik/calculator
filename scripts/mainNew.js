@@ -107,6 +107,14 @@ function recordOperator(e) {
             let result= operate(workingNumbers.operator, workingNumbers.first, workingNumbers.second);
             
             if(result.toString().length>11) {
+                if(result.toString().split('.').length==2 && result.toString().split('.')[0].length<12) {
+                    let spaceLeft= 10 - result.toString().split('.')[0].length;
+                    result= result.toFixed(spaceLeft);
+                    display.textContent= result;
+                    displayArr=[];
+                    workingNumbers.first= result;
+                    return;
+                }
                 display.textContent= 'Error';
                 displayArr=[];
                 workingNumbers.first=null;
@@ -228,7 +236,21 @@ function getSquareRoot() {
     else if(displayArr.length!=0) {
         workingNumbers.first= Number(displayArr.join(''));
         let rooted= Math.sqrt(workingNumbers.first); //result
-        workingNumbers.first= rooted;
+        if(rooted.toString().length>11) {
+            if(rooted.toString().split('.').length==2 && rooted.toString().split('.')[0].length<12) {
+                let spaceLeft= 10 - rooted.toString().split('.')[0].length;
+                rooted= rooted.toFixed(spaceLeft);
+                display.textContent= rooted;
+                displayArr=[];
+                workingNumbers.first= rooted;
+                return;
+            }
+            display.textContent= 'Error';
+            displayArr=[];
+            workingNumbers.first=null;
+            return;
+        }
+
         if(isNaN(workingNumbers.first)){
             display.textContent= 'Not a number';
             displayArr=[];

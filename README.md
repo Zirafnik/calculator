@@ -4,6 +4,8 @@ Calculator app. Added many of the more complex features, like square roots, powe
 
 The app should only calculate 2 figures at a time, except when the operation affects only the number on screen.
 
+https://zirafnik.github.io/calculator/
+
 FUTURE-DEVELOPMENT:
 -OOP
 -add keyboard support with event.key ('https://alligator.io/js/listening-to-keyboard/')
